@@ -8,7 +8,7 @@ class EasyArray implements IEasyArray
     public $data;
 
     /**
-     * Initialize Collection Instance
+     * Initialize EasyArray Instance
      */
     public function __construct($data)
     {
@@ -18,11 +18,11 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Getting Collection Original Data
+     * Getting EasyArray Original Data
      */
 
     /**
-     * Get the first original collection value
+     * Get the first original EasyArray value
      * @return mixed
      */
     public function first()
@@ -31,7 +31,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Get the last original collection value
+     * Get the last original EasyArray value
      * @return mixed
      */
     public function last()
@@ -40,7 +40,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Find value in the collection and return the key
+     * Find value in the EasyArray and return the key
      * @return int|string|false
      */
     public function find($needle)
@@ -49,7 +49,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * return length result the data collection
+     * return length result the data EasyArray
      * @return int
      */
     public function length()
@@ -58,7 +58,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Fetch the Collection Original Data
+     * Fetch the EasyArray Original Data
      * @param  string|array $key
      * @return mixed
      */
@@ -78,7 +78,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Fetch the key inside the Collection Original Data
+     * Fetch the key inside the EasyArray Original Data
      * @return array
      */
     public function key()
@@ -87,16 +87,16 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Check if original collection is null or not
+     * Check if original EasyArray is null or not
      * @return boolean
      */
-    public function is_null()
+    public function isNull()
     {
         return is_null($this->original);
     }
 
     /**
-     * Collection Manipulation
+     * EasyArray Manipulation
      */
 
     /**
@@ -110,18 +110,18 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Map the Original Value of Collection
+     * Map the Original Value of EasyArray
      * @param  callable @callback
      * @return $this
      */
-    public function map($callback)
+    public function map(callable $callback)
     {
         $this->data = array_map($callback, $this->data);
         return $this;
     }
 
     /**
-     * Split the Original Value of Collection into smaller array
+     * Split the Original Value of EasyArray into smaller array
      * @param  int $length
      * @return $this
      */
@@ -132,7 +132,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Remove specific key in the collection
+     * Remove specific key in the EasyArray
      * @param  array $key
      * @return this
      */
@@ -148,10 +148,10 @@ class EasyArray implements IEasyArray
 
     /**
      * Fetch current manipulated data
-     * @param  string|array $key
+     * @param  mixed $key
      * @return mixed
      */
-    public function getData(array|string $key = null)
+    public function getData($key = null)
     {
         if (!is_null($key)) {
             if (is_array($key)) {
@@ -167,7 +167,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Push the value inside the collection
+     * Push the value inside the EasyArray
      * @param  string|int $val
      * @return $this
      */
@@ -178,7 +178,7 @@ class EasyArray implements IEasyArray
     }
 
     /** 
-     * Merge the input array into Collection
+     * Merge the input array into EasyArray
      * @param  array $array
      * @return $this
      */
@@ -189,7 +189,7 @@ class EasyArray implements IEasyArray
     }
 
     /** 
-     * Recursive Merge the input array into Collection
+     * Recursive Merge the input array into EasyArray
      * @param  array $array
      * @return $this
      */
@@ -199,7 +199,12 @@ class EasyArray implements IEasyArray
         return $this;
     }
 
-    public function fill($array)
+    /**
+     * Fill the EasyArray
+     * @param  array $array
+     * @return void
+     */
+    public function fill(array $array)
     {
         $data_key = array_keys($this->data);
         $array_keys = array_keys($array);
@@ -214,7 +219,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Filter original data collection
+     * Filter original data EasyArray
      * @param  callable $callback
      * @param  int      $mode
      * @return $this
@@ -235,7 +240,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Remove Duplication inside collection
+     * Remove Duplication inside EasyArray
      * @return $this
      */
     public function unique($flags = SORT_STRING)
@@ -245,7 +250,7 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Check if the key exist inside collection data
+     * Check if the key exist inside EasyArray data
      * @return boolean
      */
     public function exist($key)

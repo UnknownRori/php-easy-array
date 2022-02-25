@@ -6,19 +6,22 @@
 
 ### Feature
 
-- first
-- last
 - find
+- last
+- length
 - get
 - key
+- isNull
+- pop
 - map
-- filter
 - split
+- remove
 - getData
 - push
-- pop
 - merge
-- remove
+- mergeRecursive
+- fill
+- filter
 - reverse
 - unique
 - exist
