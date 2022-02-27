@@ -227,4 +227,35 @@ class EasyArrayTest extends TestCase
         $collect = new EasyArray($data);
         $this->assertEquals($expected_data, $collect->insertKey($key)->get());
     }
+
+    /**
+     * @test
+     * @Revs(1000)
+     * @iterations(10)
+     */
+    public function bench_split()
+    {
+        $data = [
+            [1, 2, 3], [1, 2, 3]
+        ];
+        $expected_data = array_chunk($data, 1, true);
+        
+        $collect = new EasyArray($data);
+        $this->assertEquals($expected_data, $collect->split(1)->get());
+    }
+
+    /**
+     * @test
+     * @Revs(1000)
+     * @iterations(10)
+     */
+    public function bench_limit()
+    {
+        $data = [1, 2, 3, 4, 5, 6, 7, 8];
+        $expected_data = [1, 2, 3, 4];
+        $limit = 4;
+        
+        $collect = new EasyArray($data);
+        $this->assertEquals($expected_data, $collect->limit($limit)->get());
+    }
 }

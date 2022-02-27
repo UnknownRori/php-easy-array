@@ -25,6 +25,7 @@
 - unique
 - exist
 - insertKey
+- limit
 - save
 
 ### Installation

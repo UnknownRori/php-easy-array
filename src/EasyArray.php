@@ -24,25 +24,21 @@ class EasyArray implements IEasyArray
     }
 
     /**
-     * Getting EasyArray Original Data
-     */
-
-    /**
-     * Get the first original EasyArray value
+     * Get the first data EasyArray value
      * @return mixed
      */
     public function first()
     {
-        return $this->original[0];
+        return $this->data[0];
     }
 
     /**
-     * Get the last original EasyArray value
+     * Get the last data EasyArray value
      * @return mixed
      */
     public function last()
     {
-        return $this->original[count($this->original) - 1];
+        return $this->data[count($this->data) - 1];
     }
 
     /**
@@ -51,7 +47,7 @@ class EasyArray implements IEasyArray
      */
     public function find($needle)
     {
-        return array_search($needle, $this->original);
+        return array_search($needle, $this->data);
     }
 
     /**
@@ -69,7 +65,7 @@ class EasyArray implements IEasyArray
      */
     public function key()
     {
-        return array_keys($this->original);
+        return array_keys($this->data);
     }
 
     /**
@@ -78,7 +74,7 @@ class EasyArray implements IEasyArray
      */
     public function isNull()
     {
-        return is_null($this->original);
+        return is_null($this->data);
     }
 
     /**
@@ -113,7 +109,7 @@ class EasyArray implements IEasyArray
      */
     public function split(int $length)
     {
-        $this->data = array_chunk($this->data, $length);
+        $this->data = array_chunk($this->data, $length, true);
         return $this;
     }
 
@@ -270,6 +266,18 @@ class EasyArray implements IEasyArray
             return false;
         }
         return array_key_exists($key, $this->data);
+    }
+
+    /**
+     * Limit the data inside EasyArray collection
+     * @param  int $limit
+     * @return $this
+     */
+    public function limit(int $limit)
+    {
+        $this->split($limit);
+        $this->data = $this->first();
+        return $this;
     }
 
     /**
