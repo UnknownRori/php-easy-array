@@ -2,6 +2,8 @@
 
 namespace UnknownRori\EasyArray;
 
+use Exception;
+
 class EasyArray implements IEasyArray
 {
     protected $original;
@@ -9,12 +11,16 @@ class EasyArray implements IEasyArray
 
     /**
      * Initialize EasyArray Instance
+     * @param  mixed $data
+     * @return $this
      */
     public function __construct($data)
     {
         if(!is_array($data)) $data = array($data);
         $this->original = $data;
         $this->data = $data;
+
+        return $this;
     }
 
     /**
@@ -55,26 +61,6 @@ class EasyArray implements IEasyArray
     public function length()
     {
         return count($this->data);
-    }
-
-    /**
-     * Fetch the EasyArray Original Data
-     * @param  string|array $key
-     * @return mixed
-     */
-    public function get($key = null)
-    {
-        if (!is_null($key)) {
-            if (is_array($key)) {
-                return array_map(function ($key) {
-                    return $this->original[$key];
-                }, $key);
-            } else {
-                return $this->original[$key];
-            }
-        };
-
-        return $this->original;
     }
 
     /**
@@ -151,7 +137,7 @@ class EasyArray implements IEasyArray
      * @param  mixed $key
      * @return mixed
      */
-    public function getData($key = null)
+    public function get($key = null)
     {
         if (!is_null($key)) {
             if (is_array($key)) {
@@ -202,7 +188,7 @@ class EasyArray implements IEasyArray
     /**
      * Fill the EasyArray
      * @param  array $array
-     * @return void
+     * @return $this
      */
     public function fill(array $array)
     {
@@ -216,6 +202,8 @@ class EasyArray implements IEasyArray
                 }
             }
         }
+
+        return $this;
     }
 
     /**
@@ -237,6 +225,20 @@ class EasyArray implements IEasyArray
     public function reverse()
     {
         return array_reverse($this->data);
+    }
+
+    /**
+     * Combine 2 array, one array for key another one from the EasyArray for the value
+     * @param  array $key
+     * @return $this
+     */
+    public function insertKey(array $key)
+    {
+        if(count($key) == count($this->data)){
+            $this->data = array_combine($key, $this->data);
+            return $this;
+        }
+        throw new Exception("Key and the value inside the EasyArray must be same");
     }
 
     /**

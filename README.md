@@ -16,7 +16,6 @@
 - map
 - split
 - remove
-- getData
 - push
 - merge
 - mergeRecursive
@@ -25,6 +24,7 @@
 - reverse
 - unique
 - exist
+- insertKey
 - save
 
 ### Installation

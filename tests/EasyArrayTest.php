@@ -195,4 +195,36 @@ class EasyArrayTest extends TestCase
 
         $this->assertFalse($collect->exist($find));
     }
+
+    /**
+     * @test
+     * @Revs(1000)
+     * @iterations(10)
+     */
+    public function bench_combine()
+    {
+        $data = [1, 2];
+        $key = ["number_1", "number_2"];
+        $expected_data = array_combine($key, $data);
+        
+        $collect = new EasyArray($data);
+        $this->assertEquals($expected_data, $collect->insertKey($key)->get());
+    }
+
+    /**
+     * @test
+     * @Revs(1000)
+     * @iterations(10)
+     */
+    public function bench_combine_2dData()
+    {
+        $data = [
+            [1, 2, 3], [1, 2, 3]
+        ];
+        $key = ["number_1", "number_2"];
+        $expected_data = array_combine($key, $data);
+        
+        $collect = new EasyArray($data);
+        $this->assertEquals($expected_data, $collect->insertKey($key)->get());
+    }
 }
