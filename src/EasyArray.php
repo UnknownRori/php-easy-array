@@ -238,6 +238,20 @@ class EasyArray implements IEasyArray
     }
 
     /**
+     * Combine 2 array, key is data inside EasyArray and the passed parameter is for value
+     * @param  array $key
+     * @return $this
+     */
+    public function insertVal(array $val)
+    {
+        if(count($val) == count($this->data)){
+            $this->data = array_combine($this->data, $val);
+            return $this;
+        }
+        throw new Exception("Key and the value inside the EasyArray must be same");
+    }
+
+    /**
      * Remove Duplication inside EasyArray
      * @return $this
      */

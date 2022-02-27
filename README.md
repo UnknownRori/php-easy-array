@@ -25,6 +25,7 @@
 - unique
 - exist
 - insertKey
+- insertVal
 - limit
 - save
 

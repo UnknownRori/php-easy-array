@@ -23,6 +23,7 @@ interface IEasyArray
     public function reverse();
     public function unique($flags = SORT_STRING);
     public function insertKey(array $key);
+    public function insertVal(array $val);
     public function limit(int $limit);
     public function exist($key);
     public function save();
